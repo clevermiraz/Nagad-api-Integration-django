@@ -1,0 +1,29 @@
+# Compiled Python files
+__pycache__/
+*.pyc
+
+# Django generated files
+*.log
+db.sqlite3
+*.sqlite3
+
+# Static files
+/staticfiles/
+
+# Media files
+/media/
+
+# Secret keys
+*.secret_key
+
+# Environment variables
+.env
+
+# Miscellaneous
+*.DS_Store
+
+# No need Migrations on Git except __init__.py
+# Uncomment if you don't need them on server
+migrations/
+env
+.vscode
