@@ -11,6 +11,9 @@ class NagadPaymentView(APIView):
     def post(self, request):
         data = request.data
 
+        if data.get('amount') is None:
+            return Response({'error': 'Amount is required.'}, status=400)
+
         merchant_id = config('NAGAD_MERCHANT_ID')
         invoice_number = random.randint(100000, 999999)
         amount = data.get('amount')
