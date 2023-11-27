@@ -111,8 +111,9 @@ def initiate_payment(merchant_id, invoice_number, pg_public_key, merchant_privat
         'X-KM-Api-Version': 'v-0.2.0'
     }
 
-    url = "{}/remote-payment-gateway-1.0/api/dfs/check-out/initialize/{}/{}".format(base_url, merchant_id,
-                                                                                    invoice_number)
+    # url = "{}/remote-payment-gateway-1.0/api/dfs/check-out/initialize/{}/{}".format(base_url, merchant_id, invoice_number)
+
+    url = f'{base_url}/api/dfs/check-out/initialize/{merchant_id}/{invoice_number}'
 
     try:
         response = requests.post(url, json.dumps(
@@ -177,8 +178,9 @@ def complete_payment(merchant_id, invoice_number, amount, challenge, pg_public_k
         'X-KM-Api-Version': 'v-0.2.0'
     }
 
-    url = "{}/remote-payment-gateway-1.0/api/dfs/check-out/complete/{}".format(
-        base_url, payment_reference_id)
+    # url = "{}/remote-payment-gateway-1.0/api/dfs/check-out/complete/{}".format(
+    #     base_url, payment_reference_id)
+    url = f'{base_url}/api/dfs/check-out/complete/{payment_reference_id}'
 
     try:
         response = requests.post(url, data=json.dumps(
@@ -256,8 +258,10 @@ def get_payment_information(merchant_id, invoice_number, amount, pg_public_key, 
 
 
 def verify_payment(base_url, payment_reference_id):
-    url = base_url + '/remote-payment-gateway-1.0/api/dfs/verify/payment/' + \
-        payment_reference_id
+    # url = base_url + '/remote-payment-gateway-1.0/api/dfs/verify/payment/' + \
+    #     payment_reference_id
+
+    url = f'{base_url}/api/dfs/verify/payment/{payment_reference_id}'
 
     try:
         response = requests.get(url, verify=False)
